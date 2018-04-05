@@ -36,7 +36,9 @@ If you want to join me in this challenge, know that you can design your own comp
 
 ![ecommerce listing component with different states of pricing, availability, and product color](https://raw.githubusercontent.com/geoffdavis92/weekly-ui/master/assets/ecommerce-listing/ecommerce-listing-design@2x.png)
 
-The first week's component is: **ecommerce listing**! I kind of cheated and already made the design; I had the idea to make this a public challenge *after* I had already designed it. The daily breakdown will look like this:
+The first week's component is: **ecommerce listing**! (I kind of cheated and already made the design, since I had the idea to make this a public challenge *after* I had already designed it 😁) 
+
+The daily breakdown will look like this:
 
 1. (Sunday 4/8) Design component
 2. Display product name, price, and image
