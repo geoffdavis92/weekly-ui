@@ -1,0 +1,5 @@
+# weekly-ui ignores... 
+node_modules 
+.DS_STORE 
+*log 
+assets/ecommerce-listing/design.sketch
