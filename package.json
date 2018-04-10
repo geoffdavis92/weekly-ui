@@ -7,12 +7,13 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "prettier": "npx prettier ./{*json,*js,src/**/**/*} --write",
+    "prettier": "npx prettier ./{*json,*js,stories/*,src/**/**/*} --write",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
   "prettier": {
-    "useTabs": false
+    "useTabs": false,
+    "tabWidth": 2
   },
   "devDependencies": {
     "@storybook/addon-actions": "^4.0.0-alpha.1",

@@ -12,7 +12,7 @@ module.exports = {
   resolve: {
     extensions: [".ts", ".tsx"],
     alias: {
-			EcommerceListing: path.resolve(__dirname, 'src/ecommerce-listing/'),
+      EcommerceListing: path.resolve(__dirname, "src/ecommerce-listing/"),
       types: path.resolve(__dirname, "src/types"),
       utils: path.resolve(__dirname, "src/utils")
     }
