@@ -5,7 +5,7 @@ const EcommerceListing = styled.article`
 	border: 1px solid #eee;
 	border-radius: 2px;
 	display: inline-block;
-	font-family: 'Droid Sans', sans-serif;
+	font-family: 'Droid Sans','Roboto', sans-serif;
 	font-size: 20px;
 	padding: 1em;
 	max-width: 300px;
@@ -37,17 +37,23 @@ const ListingPrice = styled.h5`
 `
 
 export default props => (
-  <EcommerceListing>
-    <ListingImage>
-      <img
-        src="https://raw.githubusercontent.com/geoffdavis92/weekly-ui/master/assets/ecommerce-listing/thinsulate-hat-orange.jpg"
-        alt="hat"
-      />
-		</ListingImage>
-		<header>
-			<ListingTitle>Thinsulate Winter Cap</ListingTitle>
-			<ListingSubtitle>Blaze Orange</ListingSubtitle>
-		</header>
-		<ListingPrice>$34.99</ListingPrice>
-  </EcommerceListing>
+	<React.Fragment>
+		<style>
+		/* import fonts for display */
+		@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+		</style>
+		<EcommerceListing>
+			<ListingImage>
+				<img
+					src="https://raw.githubusercontent.com/geoffdavis92/weekly-ui/master/assets/ecommerce-listing/thinsulate-hat-orange.jpg"
+					alt="Thinsulate knitted winter cap in blaze orange"
+				/>
+			</ListingImage>
+			<header>
+				<ListingTitle>Thinsulate Winter Cap</ListingTitle>
+				<ListingSubtitle>Blaze Orange</ListingSubtitle>
+			</header>
+			<ListingPrice>$34.99</ListingPrice>
+		</EcommerceListing>
+	</React.Fragment>
 );

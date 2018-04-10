@@ -1,53 +1,50 @@
 ---
-cover_image: https://thepracticaldev.s3.amazonaws.com/i/1u140omo4551k97bg0f3.jpg
-title: "Week 1 Day 1: Design an Ecommerce Listing"
+cover_image: https://thepracticaldev.s3.amazonaws.com/i/80pa2qepn715k4qdf0gi.jpg
+title: "Week 1 Day 2: Display Product Name, Price, and Image"
 published: false
-description: "Week 1 Day 1 of my Weekly UI challenge: design the component!"
-tags: ui,weeklyui,react,design
+description: "Week 1 Day 2 of my Weekly UI challenge: display the essentials!"
+tags: ui,weeklyui,react
 ---
 
-Welcome to Week 1, Day 1 of my Weekly UI challenge! As I stated in the
-[announcement post](), week 1 will focus on an **ecommerce listing** UI
+Welcome to Week 1, Day 2 of my Weekly UI challenge! As I stated in the
+[announcement post](https://dev.to/geoff/announcing-weekly-ui-challenge-h87), week 1 will focus on an **ecommerce listing** UI
 component; each day throughout this following week, I will pick one or two
-(usually related) subelements of the design to implement. For day one, our goal
-is to…
+(usually related) subelements of the design to implement. For day two, our goal is to…
 
-## Design the component
+## Display product name, price, and image
 
-I personally used Sketch to design this week's component, but you can use
-Sketch, a similar UX/UI design program like Adobe XD, or really any other
-program (or just paper and pen/pencil!) to design your component.
+Now that we have our design ready to go, it is time to start implementing some features. A good starting point for any kind of ecommerce component is to display the bare essentials of what customers need to know to purchase a product: the name of the product, the price, and perhaps a photo or graphic relating to the product.
 
-If you decide you would rather not design your own component, you are more than
-welcome to follow along using my designs, but I think you'd really get the most
-of it if you designed your own. (plus I'd love to see what you all come up
-with!)
+I am basing *my* component around a [photograph of a hat](https://unsplash.com/photos/GsKf0FXVj3Y) I found on Unsplash; it was a great shot,  FREE, (and [permissively licensed](https://unsplash.com/license)) so I decided to use it for my product. The **Thinsulate Winter cap** is the perfect low-price beanie/toboggan/[insert regional winter knitted hat name here] for *you*, and now my job is to get it listed on an ecommerce platform so folks can actually buy the piece. 
 
-Here is what the listing component will look like, including a number of the
-component's alternative states:
+Following the original design I created, this is what I've got for **Day 2**:
 
-![An ecommerce listing component design, with color-coded states for various component states, like "sold out", "added to cart", "remove from cart", etc.](https://raw.githubusercontent.com/geoffdavis92/weekly-ui/master/assets/ecommerce-listing/ecl-single-variants%402x.png)
+![ecommerce listing showing orange knitted winter hat, the name of item "Thinsulate Winter Cap", and the $34.99 price](https://raw.githubusercontent.com/geoffdavis92/weekly-ui-assets/master/ecommerce-listing/day2/w1d2-final.png)
 
-This is what the various states of pieces of the component look like across a
-row of listings:
+I went with a classic "card" style design for the container element, giving ample whitespace padding around the inner contents; it's got a subtle `border-radius` to soften the edges, but not enough to make it seem "kiddy" or malformed. If you look closely, you will see I added the same radius to the product image, so as to make the two elements look unified.
 
-![A row of ecommerce listing components, with different states visible in respective listing components](https://raw.githubusercontent.com/geoffdavis92/weekly-ui/master/assets/ecommerce-listing/ecommerce-listing-design%402x.png)
+I decided to use a base `font-size` of **20px**, which is a [recommended font size for body copy](https://blog.usejournal.com/your-body-text-is-too-small-5e02d36dc902) for readability and visual impact. (read that article, it's got some other great points) For my `font-family`, I am using Droid Sans for the preferred typeface, with Roboto and the system sans-serif typefaces as fallbacks.
 
-## Now it is your turn
+Both the product title and subtitle use semantic heading tags: `h4` and `h5` respectively; this is good for SEO and a11y ratings, but may not be necessary, as properly contrasted font sizes and weights could do the trick. The title and price elements are slightly bigger than the base size to convey importance, and they also leverage a higher `font-weight` for the same reason, and to aid in readability whilst scanning. 
 
-Hop on those design programs (or get out that pen and paper pad) and design your
-own **ecommerce listing**! Below is a calendar of what features I will be
-implementing on which day, as well as a few resources that may help you.
+You can check out my coded implementation [on my Github pages site for this project]
+(https://geoffdavis92.github.io/weekly-ui/).
+
+## Now it's your turn
+
+I used [React.js](https://reactjs.org) and [Storybook](http://storybook.js.org) to develop my implementation, but you can use whatever technology stack you would like! (hint: if you use [Vue.js](https://vuejs.org/) or [Angular.js](https://angularjs.org), you can still use [Storybook for those libraries](https://storybook.js.org/basics/slow-start-guide/))
+
+You don't even have to use a view library if you don't want to; HTML and CSS-only (and non-view JavaScript library) components are more than possible, especially for this step.
 
 Also, please add your repos and/or images of your designs in the comments for
 inspiration! I would love to see what designs you all create.
 
-Happy designing! 🎉
+Happy coding! 🎉
 
 ### Week 1 Calendar
 
-1. Design component 🎯
-2. Display product name, price, and image
+1. Design component ✅
+2. Display product name, price, and image 🎯
 3. Add to cart button, favorite button
 4. Sale price display, sold out states
 5. Color variant thumbnail buttons
@@ -56,11 +53,7 @@ Happy designing! 🎉
 
 ### Resources
 
-* [Best Practices for Cards](https://uxplanet.org/best-practices-for-cards-fa45e3ad94dd)
-  (since my design, and some ecommerce platforms, utilize the "card" type of
-  design for listings)
-* [Best Practices for Buttons](https://uxplanet.org/button-ux-design-best-practices-types-and-states-647cf4ae0fc6)
-* [7 Rules for Creating Gorgeous UI](https://medium.com/@erikdkennedy/7-rules-for-creating-gorgeous-ui-part-1-559d4e805cda)
-* [a11y Project](https://a11yproject.com/) (_great_ resources for creating
-  accessible web sites/apps)
-* [Writing CSS with Accessibility in Mind](https://medium.com/@matuzo/writing-css-with-accessibility-in-mind-8514a0007939)
+* [How To Use H1-H6 HTML Elements Properly](https://www.hobo-web.co.uk/headers/)
+* [Your Body Text is Too Small](https://blog.usejournal.com/your-body-text-is-too-small-5e02d36dc902)
+* [Storybook](https://storybook.js.org) - JavaScript view library development environment
+* [Unsplash](https://unsplash.com) - Free and unlicensed high-quality images
