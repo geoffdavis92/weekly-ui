@@ -5,6 +5,7 @@
 // IMPORTANT
 // When you add this file, we won't add the default configurations which is similar
 // to "React Create App". This only has babel loader to load JavaScript.
+<<<<<<< HEAD
 const path =  require('path')
 
 module.exports = {
@@ -13,6 +14,10 @@ module.exports = {
       EcommerceListing: path.resolve(__dirname,'../src/ecommerce-listing/index')
     }
   },
+=======
+
+module.exports = {
+>>>>>>> 142ff3b108e247bd83ea0569301a27f9d4496c26
   plugins: [
     // your custom plugins
   ],

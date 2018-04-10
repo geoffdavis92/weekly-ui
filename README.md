@@ -1,5 +1,6 @@
 # Weekly UI Challenge 
 
+<<<<<<< HEAD
 ## Week 1: e-commerce listing
 
 ![3 ecommerce listing components, each with a different state for favorited, price, and availability](https://raw.githubusercontent.com/geoffdavis92/weekly-ui/master/assets/ecommerce-listing/ecommerce-listing-design@2x.png)
@@ -12,6 +13,30 @@
 6. 90+ SEO score, passing microdata rating
 7. Tweaks, refactors, fixes
 
+=======
+## Current challenge
+
+### Week 1: ecommerce listing
+
+![3 ecommerce listing components, each with a different state for favorited, price, and availability](https://raw.githubusercontent.com/geoffdavis92/weekly-ui/master/assets/ecommerce-listing/ecommerce-listing-design@2x.png)
+
+1. (Sunday 4/8) Design component
+2. Display product name, price, and image
+3. Add to cart button, favorite button
+4. Sale price display, sold out states
+5. Color variant thumbnail buttons
+6. 100% a11y score
+7. Tweaks, refactors, fixes
+
+## Challenges archive
+
+## Getting started
+
+## Resources
+
+<!-- use this for inspiration after other ideas run out: http://collectui.com/challenges -->
+
+>>>>>>> 142ff3b108e247bd83ea0569301a27f9d4496c26
 <!-- 
 Design Component
 Display product name, price, image
