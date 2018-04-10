@@ -1,7 +1,7 @@
 ---
 cover_image: https://thepracticaldev.s3.amazonaws.com/i/80pa2qepn715k4qdf0gi.jpg
 title: "Week 1 Day 2: Display Product Name, Price, and Image"
-published: false
+published: true
 description: "Week 1 Day 2 of my Weekly UI challenge: display the essentials!"
 tags: ui,weeklyui,react
 ---
@@ -21,9 +21,9 @@ Following the original design I created, this is what I've got for **Day 2**:
 
 ![ecommerce listing showing orange knitted winter hat, the name of item "Thinsulate Winter Cap", and the $34.99 price](https://raw.githubusercontent.com/geoffdavis92/weekly-ui-assets/master/ecommerce-listing/day2/w1d2-final.png)
 
-I went with a classic "card" style design for the container element, giving ample whitespace padding around the inner contents; it's got a subtle `border-radius` to soften the edges, but not enough to make it seem "kiddy" or malformed. If you look closely, you will see I added the same radius to the product image, so as to make the two elements look unified.
+I went with a classic "card" style design for the container element, giving ample whitespace padding around the inner contents; it's got a subtle **2px** `border-radius` to soften the edges, but not enough to make it seem "kiddy" or malformed. If you look closely, you will see I added the same radius to the product image, so as to make the two elements look unified.
 
-I decided to use a base `font-size` of **20px**, which is a [recommended font size for body copy](https://blog.usejournal.com/your-body-text-is-too-small-5e02d36dc902) for readability and visual impact. (read that article, it's got some other great points) For my `font-family`, I am using Droid Sans for the preferred typeface, with Roboto and the system sans-serif typefaces as fallbacks.
+I decided to use a base `font-size` of **20px**, which is a [recommended font size for body copy](https://blog.usejournal.com/your-body-text-is-too-small-5e02d36dc902) for readability and visual impact. (read that article, it's got some other great points) For my `font-family`, I am using **Droid Sans** for the preferred typeface, with **Roboto** and the system sans-serif typefaces as fallbacks.
 
 Both the product title and subtitle use semantic heading tags: `h4` and `h5` respectively; this is good for SEO and a11y ratings, but may not be necessary, as properly contrasted font sizes and weights could do the trick. The title and price elements are slightly bigger than the base size to convey importance, and they also leverage a higher `font-weight` for the same reason, and to aid in readability whilst scanning. 
 
@@ -36,8 +36,7 @@ I used [React.js](https://reactjs.org) and [Storybook](http://storybook.js.org) 
 
 You don't even have to use a view library if you don't want to; HTML and CSS-only (and non-view JavaScript library) components are more than possible, especially for this step.
 
-Also, please add your repos and/or images of your designs in the comments for
-inspiration! I would love to see what designs you all create.
+Also, please add your repos and/or images of your designs in the comments for inspiration! I would love to see what designs you all create.
 
 Happy coding! 🎉
 
