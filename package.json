@@ -7,10 +7,12 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "prettier": "npx prettier ./{*json,*js,stories/*,src/**/**/*} --write",
+    "prettier":
+      "npx prettier ./{*json,*js,stories/*,src/**/{*.*,**/*}} --write",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "docs": "sudo yarn run build-storybook && sudo rm -r docs && sudo mv storybook-static docs"
+    "docs":
+      "sudo yarn run build-storybook && sudo rm -r docs && sudo mv storybook-static docs"
   },
   "prettier": {
     "useTabs": false,
