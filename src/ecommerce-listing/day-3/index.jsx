@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import { faHeart } from "@fortawesome/fontawesome-free-regular";
 import {
   faCartArrowDown,
   faCartPlus,
+  faHeart as faHeartSolid,
   faTrashAlt
 } from "@fortawesome/fontawesome-free-solid";
 import FA from "@fortawesome/react-fontawesome";
@@ -20,6 +22,7 @@ const ListingContainer = styled.article`
 
 const ListingImage = styled.figure`
   margin: 0 auto 1em;
+  position: relative;
   img {
     border-radius: 2px;
     display: block;
@@ -43,7 +46,20 @@ const ListingPrice = styled.h5`
   text-align: right;
 `;
 
-const ListingButton = styled.button`
+const FavButton = styled.button`
+  background: transparent;
+  border: none;
+  color: ${props => (props.isFavorite ? THEME.red : "#fff")};
+  cursor: pointer;
+  font-size: 1.2em;
+  line-height: 1;
+  padding: 0;
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+`;
+
+const CartButton = styled.button`
   background-color: ${props =>
     !props.showAddedToCart && props.inCart && props.hover
       ? THEME.red
@@ -90,28 +106,35 @@ class ListingCartButton extends React.Component {
         </React.Fragment>
       );
     return (
-      <ListingButton
+      <CartButton
         hover={hover}
         onClick={e => {
-          hover && !showAddedToCart && this.setState(
-            prevState => ({
-              showAddedToCart: inCart ? false : true
-            }),
-            () => onClick()
-          );
+          hover &&
+            !showAddedToCart &&
+            this.setState(
+              prevState => ({
+                showAddedToCart: inCart ? false : true
+              }),
+              () => onClick()
+            );
         }}
         {...{ inCart, showAddedToCart }}
         onMouseEnter={this._toggleHoverState}
         onMouseLeave={this._toggleHoverState}
       >
         {ButtonContent}
-      </ListingButton>
+      </CartButton>
     );
   }
 }
 
 export default class EcommerceListing extends React.Component {
-  state = { inCart: false };
+  state = { inCart: false, isFavorite: false };
+  _toggleFavorite = () => {
+    this.setState(prevState => ({
+      isFavorite: !prevState.isFavorite
+    }));
+  };
   _toggleInCart = () => {
     this.setState(prevState => ({
       inCart: !prevState.inCart
@@ -126,6 +149,12 @@ export default class EcommerceListing extends React.Component {
         </style>
         <ListingContainer>
           <ListingImage>
+            <FavButton
+              onClick={this._toggleFavorite}
+              isFavorite={this.state.isFavorite}
+            >
+              <FA icon={this.state.isFavorite ? faHeartSolid : faHeart} />
+            </FavButton>
             <img
               src="https://raw.githubusercontent.com/geoffdavis92/weekly-ui/master/assets/ecommerce-listing/thinsulate-hat-orange.jpg"
               alt="Thinsulate knitted winter cap in blaze orange"
