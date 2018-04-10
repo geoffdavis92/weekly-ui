@@ -1,18 +1,18 @@
 ---
 cover_image: https://thepracticaldev.s3.amazonaws.com/i/80pa2qepn715k4qdf0gi.jpg
-title: "Week 1 Day 2: Display Product Name, Price, and Image"
+title: "Week 1 Day 3: Add to Cart, Favorite Buttons"
 published: false
-description: "Week 1 Day 2 of my Weekly UI challenge: display the essentials!"
+description: "Week 1 Day 3 of my Weekly UI challenge: buttons!"
 tags: ui,weeklyui,react
 ---
 
-Welcome to Week 1, Day 2 of my Weekly UI challenge! As I stated in the
+Welcome to Week 1, Day 3 of my Weekly UI challenge! As I stated in the
 [announcement post](https://dev.to/geoff/announcing-weekly-ui-challenge-h87),
 week 1 will focus on an **ecommerce listing** UI component; each day throughout
 this following week, I will pick one or two (usually related) subelements of the
-design to implement. For day two, our goal is to…
+design to implement. For day three, our goal is to…
 
-## Display product name, price, and image
+## Add to Cart, Favorite Buttons
 
 Now that we have our design ready to go, it is time to start implementing some
 features. A good starting point for any kind of ecommerce component is to
