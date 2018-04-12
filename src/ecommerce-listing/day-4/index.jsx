@@ -80,7 +80,7 @@ const CartButton = styled.button`
   width: 100%;
 `;
 
-const Pill = styled.span`
+const Badge = styled.span`
   border: 2px solid
     ${props => (props.soldOut ? THEME.red : props.sale ? THEME.green : "none")};
   border-radius: 2px;
@@ -108,10 +108,10 @@ const Strikethrough = styled.span`
 
 const ListingPrice = ({ children, sale, soldOut }) => {
   const Price = soldOut ? (
-    <Pill soldOut>SOLD OUT</Pill>
+    <Badge soldOut>SOLD OUT</Badge>
   ) : sale ? (
     <React.Fragment>
-      <Pill sale>SALE</Pill><Sale>{sale}</Sale><Strikethrough>{children}</Strikethrough>
+      <Badge sale>SALE</Badge><Sale>{sale}</Sale><Strikethrough>{children}</Strikethrough>
     </React.Fragment>
   ) : (
     children
