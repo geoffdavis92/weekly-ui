@@ -282,7 +282,7 @@ export default class EcommerceListing extends React.Component {
           <ListingPrice {...{ sale, soldOut }}>$34.99</ListingPrice>
           <ListingVariants
             selectedVariant={this.state.selectedVariant}
-            onClick={this._selectVariant}
+            onClick={!this.state.inCart ? this._selectVariant : null}
           >
             {[
               "https://raw.githubusercontent.com/geoffdavis92/weekly-ui/master/assets/ecommerce-listing/thinsulate-hat-orange.jpg",
