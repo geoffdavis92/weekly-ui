@@ -9,4 +9,11 @@ import EcommerceListing from "EcommerceListing";
 
 storiesOf("Week 1: Ecommerce Listing", module)
   .add("Day 2", () => <EcommerceListing.Day2 />)
-  .add("Day 3", () => <EcommerceListing.Day3 />);
+  .add("Day 3", () => <EcommerceListing.Day3 />)
+  .add("Day 4", () => (
+    <React.Fragment>
+      <EcommerceListing.Day4 sale="$20.99" />
+      {" "}
+      <EcommerceListing.Day4 soldOut />
+    </React.Fragment>
+  ));

@@ -7,6 +7,7 @@ const THEME = {
   green: "#208825",
   blue: "#1470E1",
   gray: "#CCCCCC",
+  grayDark: "#757575",
   text: "#333333"
 };
 
