@@ -145,17 +145,24 @@ const VariantGrid = styled.span`
 `;
 
 const VariantImage = styled.span`
+  cursor: ${props => (props.disableSelection ? "not-allowed" : "default")};
   display: inline-block;
   width: 2em;
   img {
     border: ${props => (props.selected ? `.25em solid ${THEME.blue}` : "none")};
     border-radius: 2px;
     display: block;
+    opacity: ${props => (props.selected ? 1 : 0.5)};
     max-width: ${props => (props.selected ? `calc(100% - .5em)` : "100%")};
   }
 `;
 
-const ListingVariants = ({ children, onClick, selectedVariant }) => {
+const ListingVariants = ({
+  children,
+  onClick,
+  disableSelection,
+  selectedVariant
+}) => {
   return (
     <VariantWrapper>
       <VariantInlineBlock>Colors:&nbsp;</VariantInlineBlock>
@@ -165,7 +172,8 @@ const ListingVariants = ({ children, onClick, selectedVariant }) => {
             <VariantImage
               key={index}
               selected={index === selectedVariant}
-              onClick={e => onClick({ index, imgsrc: child })}
+              onClick={e => !disableSelection ? onClick({ index, imgsrc: child }) : null}
+              {...{ disableSelection }}
             >
               <img src={child} />
             </VariantImage>
@@ -281,6 +289,7 @@ export default class EcommerceListing extends React.Component {
           </header>
           <ListingPrice {...{ sale, soldOut }}>$34.99</ListingPrice>
           <ListingVariants
+            disableSelection={this.state.inCart}
             selectedVariant={this.state.selectedVariant}
             onClick={!this.state.inCart ? this._selectVariant : null}
           >

@@ -1,8 +1,8 @@
 ---
-cover_image: https://thepracticaldev.s3.amazonaws.com/i/6dunemw1l0d4e7650d5y.jpg
+cover_image: https://thepracticaldev.s3.amazonaws.com/i/dyf1j6lzemg3aa4fwwp6.jpg
 title: "Week 1 Day 5: Color Variant Thumbnail Buttons"
 published: false
-description: "Week 1 Day 5 of my Weekly UI challenge: add some color"
+description: "Week 1 Day 5 of my Weekly UI challenge: Variety is the spice of life"
 tags: ui,weeklyui,react
 ---
 
