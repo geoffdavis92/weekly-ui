@@ -124,6 +124,58 @@ const ListingPrice = ({ children, sale, soldOut }) => {
   return <PriceDisplay>{Price}</PriceDisplay>;
 };
 
+const VariantWrapper = styled.span`
+  display: block;
+  margin: 1em 0;
+`;
+
+const VariantInlineBlock = styled.span`
+  display: inline-block;
+  vertical-align: middle;
+`;
+
+const VariantGrid = styled.span`
+  display: flex;
+  @supports (display: grid) {
+    display: grid;
+    grid-template-columns: repeat(4, 40px);
+    grid-column-gap: 0.5em;
+    grid-row-gap: 0.5em;
+  }
+`;
+
+const VariantImage = styled.span`
+  display: inline-block;
+  width: 2em;
+  img {
+    border: ${props => (props.selected ? `.25em solid ${THEME.blue}` : "none")};
+    border-radius: 2px;
+    display: block;
+    max-width: ${props => (props.selected ? `calc(100% - .5em)` : "100%")};
+  }
+`;
+
+const ListingVariants = ({ children, onClick, selectedVariant }) => {
+  return (
+    <VariantWrapper>
+      <VariantInlineBlock>Colors:&nbsp;</VariantInlineBlock>
+      <VariantInlineBlock>
+        <VariantGrid>
+          {React.Children.map(children, (child, index) => (
+            <VariantImage
+              key={index}
+              selected={index === selectedVariant}
+              onClick={e => onClick({ index, imgsrc: child })}
+            >
+              <img src={child} />
+            </VariantImage>
+          ))}
+        </VariantGrid>
+      </VariantInlineBlock>
+    </VariantWrapper>
+  );
+};
+
 class ListingCartButton extends React.Component {
   state = { hover: false };
   _toggleHoverState = e => {
@@ -177,7 +229,19 @@ class ListingCartButton extends React.Component {
 }
 
 export default class EcommerceListing extends React.Component {
-  state = { inCart: false, isFavorite: false };
+  state = {
+    listingImageSrc:
+      "https://raw.githubusercontent.com/geoffdavis92/weekly-ui/master/assets/ecommerce-listing/thinsulate-hat-orange.jpg",
+    inCart: false,
+    isFavorite: false,
+    selectedVariant: 0
+  };
+  _selectVariant = ({ index, imgsrc }) => {
+    this.setState(prevState => ({
+      listingImageSrc: imgsrc,
+      selectedVariant: index
+    }));
+  };
   _toggleFavorite = () => {
     this.setState(prevState => ({
       isFavorite: !prevState.isFavorite
@@ -190,6 +254,8 @@ export default class EcommerceListing extends React.Component {
   };
   render() {
     const { sale, soldOut } = this.props;
+    const pattern = /.+\-([a-z]+)+.[a-z]+$/;
+    const [_, productColor] = pattern.exec(this.state.listingImageSrc);
     return (
       <React.Fragment>
         <style>
@@ -205,8 +271,8 @@ export default class EcommerceListing extends React.Component {
               <FA icon={this.state.isFavorite ? faHeartSolid : faHeart} />
             </FavButton>
             <img
-              src="https://raw.githubusercontent.com/geoffdavis92/weekly-ui/master/assets/ecommerce-listing/thinsulate-hat-orange.jpg"
-              alt="Thinsulate knitted winter cap in blaze orange"
+              src={this.state.listingImageSrc}
+              alt={`Thinsulate knitted winter cap in ${productColor}`}
             />
           </ListingImage>
           <header>
@@ -214,6 +280,17 @@ export default class EcommerceListing extends React.Component {
             <ListingSubtitle>Blaze Orange</ListingSubtitle>
           </header>
           <ListingPrice {...{ sale, soldOut }}>$34.99</ListingPrice>
+          <ListingVariants
+            selectedVariant={this.state.selectedVariant}
+            onClick={this._selectVariant}
+          >
+            {[
+              "https://raw.githubusercontent.com/geoffdavis92/weekly-ui/master/assets/ecommerce-listing/thinsulate-hat-orange.jpg",
+              "https://raw.githubusercontent.com/geoffdavis92/weekly-ui/master/assets/ecommerce-listing/thinsulate-hat-blue.jpg",
+              "https://raw.githubusercontent.com/geoffdavis92/weekly-ui/master/assets/ecommerce-listing/thinsulate-hat-gray.jpg",
+              "https://raw.githubusercontent.com/geoffdavis92/weekly-ui/master/assets/ecommerce-listing/thinsulate-hat-yellow.jpg"
+            ]}
+          </ListingVariants>
           <footer>
             <ListingCartButton
               disabled={soldOut}
