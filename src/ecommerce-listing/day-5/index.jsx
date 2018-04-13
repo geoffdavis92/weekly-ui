@@ -39,6 +39,7 @@ const ListingTitle = styled.h3`
 const ListingSubtitle = styled.h4`
   font-weight: 400;
   margin: 0 auto 1em;
+  text-transform: capitalize;
 `;
 
 const PriceDisplay = styled.h5`
@@ -285,7 +286,7 @@ export default class EcommerceListing extends React.Component {
           </ListingImage>
           <header>
             <ListingTitle>Thinsulate Winter Cap</ListingTitle>
-            <ListingSubtitle>Blaze Orange</ListingSubtitle>
+            <ListingSubtitle>{productColor}</ListingSubtitle>
           </header>
           <ListingPrice {...{ sale, soldOut }}>$34.99</ListingPrice>
           <ListingVariants
