@@ -63,7 +63,9 @@ const CartButton = styled.button`
   background-color: ${props =>
     !props.showAddedToCart && props.inCart && props.hover
       ? THEME.red
-      : props.inCart ? THEME.green : THEME.blue};
+      : props.inCart
+        ? THEME.green
+        : THEME.blue};
   border: none;
   border-radius: 2px;
   color: #fff;

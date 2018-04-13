@@ -12,7 +12,22 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "docs":
-      "sudo yarn run build-storybook && sudo rm -r docs && sudo mv storybook-static docs"
+      "sudo yarn run build-storybook && sudo rm -r docs && sudo mv storybook-static docs",
+    "webpack": "webpack --mode=development --watch"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "target": {
+            "browsers": "last 2 versions"
+          }
+        }
+      ],
+      "react"
+    ],
+    "plugins": ["transform-class-properties"]
   },
   "prettier": {
     "useTabs": false,
@@ -32,6 +47,7 @@
     "@types/react-dom": "^16.0.4",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
@@ -42,7 +58,8 @@
     "styled-components": "^3.2.5",
     "ts-loader": "^4.1.0",
     "typescript": "^2.8.1",
-    "webpack": "^4.4.1"
+    "webpack": "^4.4.1",
+    "webpack-cli": "^2.0.14"
   },
   "dependencies": {}
 }

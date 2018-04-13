@@ -3,14 +3,14 @@ const path = require("path");
 
 module.exports = {
   entry: {
-    ecommerceListing: "src/ecommerce.jsx"
+    ecommerceListing: path.resolve(__dirname, "src/ecommerce-listing/demo.jsx")
   },
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist/")
   },
   resolve: {
-    extensions: [".ts", ".tsx"],
+    extensions: [".js", ".jsx"],
     alias: {
       EcommerceListing: path.resolve(__dirname, "src/ecommerce-listing/"),
       types: path.resolve(__dirname, "src/types"),

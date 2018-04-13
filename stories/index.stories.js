@@ -15,4 +15,5 @@ storiesOf("Week 1: Ecommerce Listing", module)
       <EcommerceListing.Day4 sale="$20.99" /> <EcommerceListing.Day4 soldOut />
     </React.Fragment>
   ))
-  .add("Day 5", () => <EcommerceListing.Day5 />);
+  .add("Day 5", () => <EcommerceListing.Day5 />)
+  .add("Day 6", () => <EcommerceListing.Day6 />);

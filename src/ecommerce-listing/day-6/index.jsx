@@ -21,7 +21,7 @@ const ListingContainer = styled.article`
   max-width: 300px;
 `;
 
-const ListingImage = styled.figure`
+const ListingImage = styled.figure.attrs({ role: "group" })`
   margin: 0 auto 1em;
   position: relative;
   img {
@@ -39,10 +39,12 @@ const ListingTitle = styled.h3`
 const ListingSubtitle = styled.h4`
   font-weight: 400;
   margin: 0 auto 1em;
+  text-transform: capitalize;
 `;
 
 const PriceDisplay = styled.h5`
   font-size: 1.2em;
+  height: 1.4em;
   line-height: 1;
   margin: 0 auto 0.85em;
   text-align: right;
@@ -128,6 +130,74 @@ const ListingPrice = ({ children, sale, soldOut }) => {
   return <PriceDisplay>{Price}</PriceDisplay>;
 };
 
+const VariantWrapper = styled.span`
+  display: block;
+  margin: 1em 0;
+`;
+
+const VariantInlineBlock = styled.span`
+  display: inline-block;
+  vertical-align: middle;
+`;
+
+const VariantGrid = styled.span`
+  display: flex;
+  @supports (display: grid) {
+    display: grid;
+    grid-template-columns: repeat(4, 40px);
+    grid-column-gap: 0.5em;
+    grid-row-gap: 0.5em;
+  }
+`;
+
+const VariantImage = styled.span`
+  cursor: ${props => (props.disableSelection ? "not-allowed" : "default")};
+  display: inline-block;
+  width: 2em;
+  img {
+    border: ${props => (props.selected ? `.25em solid ${THEME.blue}` : "none")};
+    border-radius: 2px;
+    display: block;
+    opacity: ${props => (props.selected ? 1 : 0.5)};
+    max-width: ${props => (props.selected ? `calc(100% - .5em)` : "100%")};
+  }
+`;
+
+const getAltTextFromSrc = src => {
+  const pattern = /.+\-([a-z]+)+.[a-z]+$/;
+  const [_, productColor] = pattern.exec(src);
+  return productColor;
+};
+
+const ListingVariants = ({
+  children,
+  onClick,
+  disableSelection,
+  selectedVariant
+}) => {
+  return (
+    <VariantWrapper>
+      <VariantInlineBlock>Colors:&nbsp;</VariantInlineBlock>
+      <VariantInlineBlock>
+        <VariantGrid>
+          {React.Children.map(children, (child, index) => (
+            <VariantImage
+              key={index}
+              selected={index === selectedVariant}
+              onClick={e =>
+                !disableSelection ? onClick({ index, imgsrc: child }) : null
+              }
+              {...{ disableSelection }}
+            >
+              <img src={child} alt={getAltTextFromSrc(child)} />
+            </VariantImage>
+          ))}
+        </VariantGrid>
+      </VariantInlineBlock>
+    </VariantWrapper>
+  );
+};
+
 class ListingCartButton extends React.Component {
   state = { hover: false };
   _toggleHoverState = e => {
@@ -142,24 +212,26 @@ class ListingCartButton extends React.Component {
     const ButtonContent =
       inCart && showAddedToCart ? (
         <React.Fragment>
-          <FA icon={faCartArrowDown} /> ADDED TO CART
+          <FA icon={faCartArrowDown} aria-label="in-cart icon" /> ADDED TO CART
         </React.Fragment>
       ) : inCart && hover ? (
         <React.Fragment>
-          <FA icon={faTrashAlt} /> REMOVE FROM CART
+          <FA icon={faTrashAlt} aria-label="remove-from-cart icon" /> REMOVE
+          FROM CART
         </React.Fragment>
       ) : !inCart ? (
         <React.Fragment>
-          <FA icon={faCartPlus} /> ADD TO CART
+          <FA icon={faCartPlus} aria-label="add-to-cart icon" /> ADD TO CART
         </React.Fragment>
       ) : (
         <React.Fragment>
-          <FA icon={faCartArrowDown} /> ADDED TO CART
+          <FA icon={faCartArrowDown} aria-label="in-cart icon" /> ADDED TO CART
         </React.Fragment>
       );
     return (
       <CartButton
         hover={hover}
+        type="button"
         onClick={e => {
           hover &&
             !showAddedToCart &&
@@ -181,7 +253,19 @@ class ListingCartButton extends React.Component {
 }
 
 export default class EcommerceListing extends React.Component {
-  state = { inCart: false, isFavorite: false };
+  state = {
+    listingImageSrc:
+      "https://raw.githubusercontent.com/geoffdavis92/weekly-ui/master/assets/ecommerce-listing/thinsulate-hat-orange.jpg",
+    inCart: false,
+    isFavorite: false,
+    selectedVariant: 0
+  };
+  _selectVariant = ({ index, imgsrc }) => {
+    this.setState(prevState => ({
+      listingImageSrc: imgsrc,
+      selectedVariant: index
+    }));
+  };
   _toggleFavorite = () => {
     this.setState(prevState => ({
       isFavorite: !prevState.isFavorite
@@ -194,6 +278,9 @@ export default class EcommerceListing extends React.Component {
   };
   render() {
     const { sale, soldOut } = this.props;
+    // const pattern = /.+\-([a-z]+)+.[a-z]+$/;
+    // const [_, productColor] = pattern.exec(this.state.listingImageSrc);
+    const productColor = getAltTextFromSrc(this.state.listingImageSrc);
     return (
       <React.Fragment>
         <style>
@@ -203,21 +290,40 @@ export default class EcommerceListing extends React.Component {
         <ListingContainer>
           <ListingImage>
             <FavButton
-              onClick={this._toggleFavorite}
+              aria-label="favorite button"
+              type="button"
               isFavorite={this.state.isFavorite}
+              onClick={this._toggleFavorite}
             >
-              <FA icon={this.state.isFavorite ? faHeartSolid : faHeart} />
+              <FA
+                icon={this.state.isFavorite ? faHeartSolid : faHeart}
+                aria-label={
+                  this.state.isFavorite ? "favorited icon" : "add-favorite icon"
+                }
+              />
             </FavButton>
             <img
-              src="https://raw.githubusercontent.com/geoffdavis92/weekly-ui/master/assets/ecommerce-listing/thinsulate-hat-orange.jpg"
-              alt="Thinsulate knitted winter cap in blaze orange"
+              src={this.state.listingImageSrc}
+              alt={`Thinsulate knitted winter cap in ${productColor}`}
             />
           </ListingImage>
           <header>
             <ListingTitle>Thinsulate Winter Cap</ListingTitle>
-            <ListingSubtitle>Blaze Orange</ListingSubtitle>
+            <ListingSubtitle>{productColor}</ListingSubtitle>
           </header>
           <ListingPrice {...{ sale, soldOut }}>$34.99</ListingPrice>
+          <ListingVariants
+            disableSelection={this.state.inCart}
+            selectedVariant={this.state.selectedVariant}
+            onClick={!this.state.inCart ? this._selectVariant : null}
+          >
+            {[
+              "https://raw.githubusercontent.com/geoffdavis92/weekly-ui/master/assets/ecommerce-listing/thinsulate-hat-orange.jpg",
+              "https://raw.githubusercontent.com/geoffdavis92/weekly-ui/master/assets/ecommerce-listing/thinsulate-hat-blue.jpg",
+              "https://raw.githubusercontent.com/geoffdavis92/weekly-ui/master/assets/ecommerce-listing/thinsulate-hat-gray.jpg",
+              "https://raw.githubusercontent.com/geoffdavis92/weekly-ui/master/assets/ecommerce-listing/thinsulate-hat-yellow.jpg"
+            ]}
+          </ListingVariants>
           <footer>
             <ListingCartButton
               disabled={soldOut}
