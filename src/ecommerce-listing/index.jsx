@@ -4,6 +4,7 @@ import Day3 from "./day-3/";
 import Day4 from "./day-4/";
 import Day5 from "./day-5/";
 import Day6 from "./day-6/";
+import Day7 from "./day-7/";
 
 export default {
   Day1,
@@ -11,5 +12,6 @@ export default {
   Day3,
   Day4,
   Day5,
-  Day6
+  Day6,
+  Day7
 };

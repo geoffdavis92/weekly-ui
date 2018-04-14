@@ -54,6 +54,9 @@ const PriceDisplay = styled.h5`
 const FavButton = styled.button`
   background: transparent;
   border: none;
+  border-radius: 2px;
+  box-shadow: 0 0 0 2px transparent,
+    0 0 0 0 ${props => (props.isFavorite ? THEME.red : "#fff")};
   color: ${props => (props.isFavorite ? THEME.red : "#fff")};
   cursor: pointer;
   font-size: 1.2em;
@@ -62,6 +65,12 @@ const FavButton = styled.button`
   position: absolute;
   top: 0.5em;
   right: 0.5em;
+  &:focus {
+    box-shadow: 0 0 0 2px transparent,
+      0 0 0 2px ${props => (props.isFavorite ? THEME.red : "#fff")};
+    outline: none;
+    transition: 0.2s box-shadow;
+  }
 `;
 
 const CartButton = styled.button`
@@ -75,6 +84,14 @@ const CartButton = styled.button`
           : THEME.blue};
   border: none;
   border-radius: 2px;
+  box-shadow: 0 0 0 2px #fff,
+    0 0 0
+      ${props =>
+        !props.showAddedToCart && props.inCart && props.hover
+          ? THEME.red
+          : props.inCart
+            ? THEME.green
+            : THEME.blue};
   color: ${props => (props.disabled ? THEME.grayDark : "#fff")};
   cursor: ${props =>
     props.disabled
@@ -87,6 +104,18 @@ const CartButton = styled.button`
   font-size: 0.9em;
   padding: 0.5em;
   width: 100%;
+  &:focus {
+    box-shadow: 0 0 0 2px #fff,
+      0 0 0 4px
+        ${props =>
+          !props.showAddedToCart && props.inCart && props.hover
+            ? THEME.red
+            : props.inCart
+              ? THEME.green
+              : THEME.blue};
+    outline: none;
+    transition: 0.2s box-shadow;
+  }
 `;
 
 const Badge = styled.span`
@@ -150,9 +179,15 @@ const VariantGrid = styled.span`
   }
 `;
 
-const VariantImage = styled.span`
+const VariantImage = styled.button`
+  border: none;
+  border-radius: 2px;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 0 ${THEME.blue};
   cursor: ${props => (props.disableSelection ? "not-allowed" : "default")};
   display: inline-block;
+  font-size: 1em;
+  outline: none;
+  padding: 0;
   width: 2em;
   img {
     border: ${props => (props.selected ? `.25em solid ${THEME.blue}` : "none")};
@@ -161,6 +196,12 @@ const VariantImage = styled.span`
     opacity: ${props => (props.selected ? 1 : 0.5)};
     max-width: ${props => (props.selected ? `calc(100% - .5em)` : "100%")};
   }
+  ${props => props.disableSelection
+    ? ""
+    : `&:focus {
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px ${THEME.blue};
+    transition: .2s box-shadow;
+  }`};
 `;
 
 const getAltTextFromSrc = src => {
