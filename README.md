@@ -2,10 +2,9 @@
 
 ## Current challenge
 
-<!-- 
 ### Week 2: Search Bar
 
-![3 ecommerce listing components, each with a different state for favorited, price, and availability](https://raw.githubusercontent.com/geoffdavis92/weekly-ui/master/assets/ecommerce-listing/ecommerce-listing-design@2x.png)
+![alt_text](https://raw.githubusercontent.com/geoffdavis92/weekly-ui/master/assets/ecommerce-listing/ecommerce-listing-design@2x.png)
 
 1. (Sunday 4/15) Design component
 2. Input field
@@ -14,7 +13,8 @@
 5. Past search term indicators
 6. 100% a11y score
 7. Tweaks, refactors, fixes
- -->
+
+## Challenges archive
 
 ### Week 1: ecommerce listing
 
@@ -27,8 +27,6 @@
 5. Color variant thumbnail buttons
 6. 100% a11y score
 7. Tweaks, refactors, fixes
-
-## Challenges archive
 
 ## Getting started
 

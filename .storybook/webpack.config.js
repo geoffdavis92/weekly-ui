@@ -11,7 +11,8 @@ const path =  require('path')
 module.exports = {
   resolve: {
     alias: {
-      EcommerceListing: path.resolve(__dirname,'../src/ecommerce-listing/')
+      EcommerceListing: path.resolve(__dirname,'../src/01-ecommerce-listing/'),
+      SearchBar: path.resolve(__dirname, '../src/02-search-bar/')
     }
   },
   plugins: [
