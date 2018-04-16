@@ -4,7 +4,7 @@
 
 ### Week 2: Search Bar
 
-![alt_text](https://raw.githubusercontent.com/geoffdavis92/weekly-ui/master/assets/ecommerce-listing/ecommerce-listing-design@2x.png)
+![Search Bar design](https://raw.githubusercontent.com/geoffdavis92/weekly-ui-assets/master/search-bar/design.png)
 
 1. (Sunday 4/15) Design component
 2. Input field
