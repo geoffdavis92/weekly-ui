@@ -196,9 +196,10 @@ const VariantImage = styled.button`
     opacity: ${props => (props.selected ? 1 : 0.5)};
     max-width: ${props => (props.selected ? `calc(100% - .5em)` : "100%")};
   }
-  ${props => props.disableSelection
-    ? ""
-    : `&:focus {
+  ${props =>
+    props.disableSelection
+      ? ""
+      : `&:focus {
     box-shadow: 0 0 0 2px #fff, 0 0 0 4px ${THEME.blue};
     transition: .2s box-shadow;
   }`};

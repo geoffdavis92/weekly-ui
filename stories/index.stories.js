@@ -6,6 +6,7 @@ import { linkTo } from "@storybook/addon-links";
 
 import { Button, Welcome } from "@storybook/react/demo";
 import EcommerceListing from "EcommerceListing";
+import SearchBar from "SearchBar";
 
 storiesOf("Week 1: Ecommerce Listing", module)
   .add("Day 2", () => <EcommerceListing.Day2 />)
@@ -18,3 +19,5 @@ storiesOf("Week 1: Ecommerce Listing", module)
   .add("Day 5", () => <EcommerceListing.Day5 />)
   .add("Day 6", () => <EcommerceListing.Day6 />)
   .add("Day 7", () => <EcommerceListing.Day7 />);
+
+storiesOf("Week 2: Search Bar", module).add("Day 2", () => <SearchBar.Day2 />);

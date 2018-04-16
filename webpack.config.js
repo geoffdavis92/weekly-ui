@@ -3,7 +3,10 @@ const path = require("path");
 
 module.exports = {
   entry: {
-    ecommerceListing: path.resolve(__dirname, "src/01-ecommerce-listing/demo.jsx"),
+    ecommerceListing: path.resolve(
+      __dirname,
+      "src/01-ecommerce-listing/demo.jsx"
+    ),
     searchBar: path.resolve(__dirname, "src/02-search-bar/demo.jsx")
   },
   output: {
