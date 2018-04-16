@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { focusShadow, THEME } from "../util";
 
-const SearchForm = styled.form`
+const SearchForm = styled.form.attrs({ id: "search-form" })`
   font-size: 20px;
   font-family: "Noto Sans", sans-serif;
   line-height: 1;
@@ -30,8 +30,9 @@ const SearchInputWrapper = styled.section`
 `;
 
 const SearchInput = styled.input.attrs({
+  name: "search-query",
   type: "search"
-}) `
+})`
   background: transparent;
   border: none;
   display: inline-block;
@@ -43,7 +44,7 @@ const SearchInput = styled.input.attrs({
 const SearchButton = styled.input.attrs({
   type: "submit",
   value: "Search"
-}) `
+})`
   background: #fff;
   border: 1px solid #999;
   border-radius: 2px;
@@ -56,18 +57,39 @@ const SearchButton = styled.input.attrs({
   &:active {
     background: ${THEME.blue};
     border-color: #fff !important;
-    color: #fff;
+    color: #fff !important;
   }
   &:focus {
     ${focusShadow(THEME.blue)};
   }
 `;
 
-export default props => (
-  <SearchForm onSubmit={e => e.preventDefault()}>
-    <SearchInputWrapper>
-      <SearchInput />
-    </SearchInputWrapper>
-    <SearchButton />
-  </SearchForm>
-);
+export default class SearchBar extends React.Component {
+  state = { query: "" };
+  _handleSubmit = e => {
+    e.preventDefault();
+    console.log(this.Input.value);
+    this.setState(prevState => ({ query: this.Input.value }));
+  };
+  render() {
+    return (
+      <React.Fragment>
+        <SearchForm
+          onSubmit={e => {
+            this.props.handleSubmit({ event: e, query: this.Input.value });
+            this.Form.reset();
+          }}
+          innerRef={node => (this.Form = node)}
+        >
+          <SearchInputWrapper>
+            <SearchInput innerRef={node => (this.Input = node)} />
+          </SearchInputWrapper>
+          <SearchButton />
+        </SearchForm>
+        <p style={{ fontFamily: '"Noto Sans", sans-serif' }}>
+          {this.state.query}
+        </p>
+      </React.Fragment>
+    );
+  }
+}
