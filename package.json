@@ -11,8 +11,7 @@
       "npx prettier ./{*json,*js,stories/*,src/**/{*.{js,jsx},**/*.{js,jsx}}} --write",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "docs":
-      "sudo yarn run build-storybook && sudo rm -r docs && sudo mv storybook-static docs",
+    "docs": "sudo yarn run build-storybook -o docs",
     "webpack": "webpack --mode=development --watch"
   },
   "babel": {

@@ -25,6 +25,7 @@ const SearchInputWrapper = styled.section`
   background-color: #fff;
   border: 1px solid #999;
   border-radius: 2px;
+  cursor: text;
   display: inline-block;
   padding: 0.5em;
 `;
@@ -81,8 +82,11 @@ export default class SearchBar extends React.Component {
           }}
           innerRef={node => (this.Form = node)}
         >
-          <SearchInputWrapper>
-            <SearchInput innerRef={node => (this.Input = node)} />
+          <SearchInputWrapper onClick={e => this.Input.focus()}>
+            <SearchInput
+              placeholder="Search..."
+              innerRef={node => (this.Input = node)}
+            />
           </SearchInputWrapper>
           <SearchButton />
         </SearchForm>

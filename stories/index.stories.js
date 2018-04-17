@@ -20,9 +20,14 @@ storiesOf("Week 1: Ecommerce Listing", module)
   .add("Day 6", () => <EcommerceListing.Day6 />)
   .add("Day 7", () => <EcommerceListing.Day7 />);
 
-action("TEST ACTION");
 storiesOf("Week 2: Search Bar", module)
-  .add("Day 2", () => <SearchBar.Day2 />)
+  .add("Day 2", () => (
+    <SearchBar.Day2
+      handleSubmit={query => {
+        action("Searched term")(query);
+      }}
+    />
+  ))
   .add("Day 3", () => (
     <SearchBar.Day3
       handleSubmit={({ event, query }) => {
@@ -31,3 +36,8 @@ storiesOf("Week 2: Search Bar", module)
       }}
     />
   ));
+// =======
+// storiesOf("Week 2: Search Bar", module).add("Day 2", () => (
+//   <SearchBar.Day2 handleSubmit={action("Searched term")} />
+// ));
+// >>>>>>> master
