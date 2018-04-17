@@ -20,4 +20,6 @@ storiesOf("Week 1: Ecommerce Listing", module)
   .add("Day 6", () => <EcommerceListing.Day6 />)
   .add("Day 7", () => <EcommerceListing.Day7 />);
 
-storiesOf("Week 2: Search Bar", module).add("Day 2", () => <SearchBar.Day2 />);
+storiesOf("Week 2: Search Bar", module).add("Day 2", () => (
+  <SearchBar.Day2 handleSubmit={action("Searched term")} />
+));

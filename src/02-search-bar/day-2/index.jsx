@@ -27,6 +27,7 @@ const SearchInputWrapper = styled.section`
   border-radius: 2px;
   display: inline-block;
   padding: 0.5em;
+  max-width: calc(100% - 1em);
 `;
 
 const SearchInput = styled.input.attrs({
@@ -38,12 +39,27 @@ const SearchInput = styled.input.attrs({
   font-size: 1em;
   outline: none;
   width: 33ch;
+  max-width: 100%;
 `;
 
-export default props => (
-  <SearchForm onSubmit={e => e.preventDefault()}>
-    <SearchInputWrapper>
-      <SearchInput />
-    </SearchInputWrapper>
-  </SearchForm>
-);
+export default class SearchBar extends React.Component {
+  render() {
+    return (
+      <SearchForm
+        onSubmit={e => {
+          e.preventDefault();
+          this.props.handleSubmit(this.Input.value);
+          this.Form.reset();
+        }}
+        innerRef={node => (this.Form = node)}
+      >
+        <SearchInputWrapper>
+          <SearchInput
+            placeholder="Search..."
+            innerRef={node => (this.Input = node)}
+          />
+        </SearchInputWrapper>
+      </SearchForm>
+    );
+  }
+}
