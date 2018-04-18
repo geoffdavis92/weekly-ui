@@ -79,7 +79,9 @@ const CartButton = styled.button`
       ? THEME.gray
       : !props.showAddedToCart && props.inCart && props.hover
         ? THEME.red
-        : props.inCart ? THEME.green : THEME.blue};
+        : props.inCart
+          ? THEME.green
+          : THEME.blue};
   border: none;
   border-radius: 2px;
   box-shadow: 0 0 0 2px #fff,
@@ -87,12 +89,16 @@ const CartButton = styled.button`
       ${props =>
         !props.showAddedToCart && props.inCart && props.hover
           ? THEME.red
-          : props.inCart ? THEME.green : THEME.blue};
+          : props.inCart
+            ? THEME.green
+            : THEME.blue};
   color: ${props => (props.disabled ? THEME.grayDark : "#fff")};
   cursor: ${props =>
     props.disabled
       ? "not-allowed"
-      : props.hover && props.showAddedToCart ? "default" : "pointer"};
+      : props.hover && props.showAddedToCart
+        ? "default"
+        : "pointer"};
   display: block;
   font-family: ${THEME.fontFamily};
   font-size: 0.9em;
@@ -104,7 +110,9 @@ const CartButton = styled.button`
         ${props =>
           !props.showAddedToCart && props.inCart && props.hover
             ? THEME.red
-            : props.inCart ? THEME.green : THEME.blue};
+            : props.inCart
+              ? THEME.green
+              : THEME.blue};
     outline: none;
     transition: 0.2s box-shadow;
   }

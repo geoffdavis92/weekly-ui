@@ -1,6 +1,6 @@
 ---
-cover_image: https://thepracticaldev.s3.amazonaws.com/i/f1aw40p6ebsbvz8sjrto.jpg
-title: "Weekly UI Challenge Week 2 Day 3: Add an submit button"
+cover_image: https://thepracticaldev.s3.amazonaws.com/i/esxpbj7v1zc27o49ymzm.jpg
+title: "Weekly UI Challenge Week 2 Day 3: Add a submit button"
 published: false
 description: "Week 2 Day 3 of my Weekly UI challenge: Pressing buttons"
 tags: ui,weeklyui,challenge,react
@@ -16,11 +16,11 @@ If users are so inclined, they can click that to search. Otherwise, such users�
 
 Following the original design I created, this is what I've got for **Day 3**:
 
-![A search bar component, with input text element](https://raw.githubusercontent.com/geoffdavis92/weekly-ui-assets/master/search-bar/day2/w2d2-final-sized.png)
+![A search bar component, with input text element and submit button](https://thepracticaldev.s3.amazonaws.com/i/bha1bm0cqf0jn0exrskr.jpg)
 
 The submit/search button uses much of the same styles of the search `input` element, for uniformity and because it's a great size for clicking and tapping, making it easy for users to get their searching done.
 
-Instead of using a `button` element– which would still work to submit the `form` element, I use an `input` element with the type of `submit`; this is more semantic and clearly defines the purpose of the element. To further cement semantic utility of this element, I updated the `value` attribute to read "Search", since the native "submit" is not very clear in what exactly the user is "submitting" or to what form. Note that you do not need to add a name to this element, since rarely– if ever– do search queries need the value of the `submit` input sent with a query, and [input elements with no `name` attribute are never submitted to the server.](https://stackoverflow.com/questions/24472017/are-input-fields-without-a-name-attribute-submitted-to-the-server).
+Instead of using a `button` element– which would still work to submit the `form` element, I use an `input` element with the type of `submit`; this is more semantic and clearly defines the purpose of the element. To further cement semantic utility of this element, I updated the `value` attribute to read "Search", since the native "submit" is not very clear in what exactly the user is "submitting" or to what form. Note that you do not need to add a name to this element, since rarely– if ever– do search queries need the value of the `submit` input sent with a query, and [input elements with no `name` attribute are never submitted to the server](https://stackoverflow.com/questions/24472017/are-input-fields-without-a-name-attribute-submitted-to-the-server).
 
 Here is an animation of the search input and submit button working together:
 

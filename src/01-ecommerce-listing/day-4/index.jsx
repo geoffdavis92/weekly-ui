@@ -68,14 +68,18 @@ const CartButton = styled.button`
       ? THEME.gray
       : !props.showAddedToCart && props.inCart && props.hover
         ? THEME.red
-        : props.inCart ? THEME.green : THEME.blue};
+        : props.inCart
+          ? THEME.green
+          : THEME.blue};
   border: none;
   border-radius: 2px;
   color: ${props => (props.disabled ? THEME.grayDark : "#fff")};
   cursor: ${props =>
     props.disabled
       ? "not-allowed"
-      : props.hover && props.showAddedToCart ? "default" : "pointer"};
+      : props.hover && props.showAddedToCart
+        ? "default"
+        : "pointer"};
   display: block;
   font-family: ${THEME.fontFamily};
   font-size: 0.9em;
