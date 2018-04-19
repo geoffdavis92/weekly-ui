@@ -35,9 +35,13 @@ storiesOf("Week 2: Search Bar", module)
         action("Searched term")(query);
       }}
     />
+  ))
+  .add("Day 4", () => (
+    <SearchBar.Day4
+      items={["bluegrass", "folk rock", "indiepop", "shoegaze"]}
+      handleSubmit={({ event, query }) => {
+        event.preventDefault();
+        if (query.length) action("Searched term")(query);
+      }}
+    />
   ));
-// =======
-// storiesOf("Week 2: Search Bar", module).add("Day 2", () => (
-//   <SearchBar.Day2 handleSubmit={action("Searched term")} />
-// ));
-// >>>>>>> master
