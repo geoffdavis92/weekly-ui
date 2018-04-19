@@ -109,27 +109,30 @@ const AutocompleteResults = ({
   isOpen,
   getItemProps,
   highlightedIndex,
-  handleItemClick,
-  parentClass
+  selectItem
 }) => {
   const filteredItems = items.filter(filterItems);
-  const mappedItems = filteredItems.map((item, i) => (
-    <AutocompleteItem
-      key={item}
-      highlighted={i === highlightedIndex}
-      {...getItemProps({
-        item,
-        index: i,
-        value: item,
-        innerRef: n => (parentClass[item.replace(/\s/g, "_")] = n)
-      })}
-    >
-      {item}
-    </AutocompleteItem>
-  ));
+  const mappedItems = filteredItems.map((item, i) => {
+    return (
+      <AutocompleteItem
+        {...getItemProps({
+          item,
+          index: i,
+          value: item
+        })}
+        key={item}
+        highlighted={i === highlightedIndex}
+        onMouseDown={e => {
+          selectItem({ item });
+        }}
+      >
+        {item}
+      </AutocompleteItem>
+    );
+  });
   return (
     isOpen && (
-      <AutocompleteWrapper open={isOpen}>
+      <AutocompleteWrapper open={mappedItems.length && isOpen}>
         <AutocompleteList>{mappedItems}</AutocompleteList>
       </AutocompleteWrapper>
     )
@@ -140,7 +143,7 @@ export default class SearchBar extends React.Component {
   state = { query: "" };
   Input = false;
   componentDidMount() {
-    console.log(this.Input);
+    // console.log(this.DS);
   }
   _filterItems = ({ inputValue }) => i =>
     !inputValue || i.toLowerCase().includes(inputValue.toLowerCase());
@@ -154,6 +157,7 @@ export default class SearchBar extends React.Component {
     e.preventDefault();
     this.props.handleSubmit({ event: e, query: this.Input.value });
     this.Form.reset();
+    this.DS.clearSelection();
   };
   render() {
     const { items } = this.props;
@@ -163,12 +167,44 @@ export default class SearchBar extends React.Component {
         innerRef={node => (this.Form = node)}
       >
         <SearchContainer>
-          <SearchInputWrapper>
-            <SearchInput
-              placeholder={"Search..."}
-              innerRef={n => (this.Input = n)}
-            />
-          </SearchInputWrapper>
+          <Downshift ref={n => (this.DS = n)}>
+            {({
+              getRootProps,
+              getItemProps,
+              getInputProps,
+              inputValue,
+              isOpen,
+              highlightedIndex,
+              selectItem,
+              selectedItem
+            }) => {
+              return (
+                <SearchInputWrapper
+                  {...getRootProps({ refKey: "search-wrapper" })}
+                >
+                  <SearchInput
+                    placeholder={"Search..."}
+                    innerRef={n => (this.Input = n)}
+                    {...getInputProps({
+                      value: selectedItem ? selectedItem.item : undefined
+                    })}
+                  />
+                  <AutocompleteResults
+                    {...{
+                      filterItems: this._filterItems({
+                        inputValue
+                      }),
+                      items,
+                      isOpen,
+                      getItemProps,
+                      highlightedIndex,
+                      selectItem
+                    }}
+                  />
+                </SearchInputWrapper>
+              );
+            }}
+          </Downshift>
         </SearchContainer>
         <SearchButton />
       </SearchForm>
