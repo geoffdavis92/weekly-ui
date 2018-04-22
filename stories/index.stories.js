@@ -44,4 +44,25 @@ storiesOf("Week 2: Search Bar", module)
         if (query.length) action("Searched term")(query);
       }}
     />
+  ))
+  .add("Day 5", () => (
+    <SearchBar.Day5
+      items={[
+        "bluegrass",
+        "folk rock",
+        "indiepop",
+        "shoegaze",
+        "hip hop",
+        "electronica",
+        "southern rap",
+        "funk",
+        "house",
+        "speed metal"
+      ]}
+      pastItems={["hard rock", "trap", "new wave"]}
+      handleSubmit={({ event, query }) => {
+        event.preventDefault();
+        if (query.length) action("Searched term")(query);
+      }}
+    />
   ));

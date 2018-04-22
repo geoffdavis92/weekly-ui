@@ -2,15 +2,15 @@
 
 ## Current challenge
 
-### Week 2: Search Bar
+### Week 3: xxx
 
-![Search Bar design](https://raw.githubusercontent.com/geoffdavis92/weekly-ui-assets/master/search-bar/design.png)
+![xxx design](https://raw.githubusercontent.com/geoffdavis92/weekly-ui-assets/master/search-bar/design.png)
 
-1. (Sunday 4/15) Design component
-2. Input field
-3. Submit button
-4. [autocomplete] Downshift integration
-5. Past search term indicators
+1. (Sunday 4/22) Design component
+2. 
+3. 
+4. 
+5. 
 6. 100% a11y score
 7. Tweaks, refactors, fixes
 
@@ -25,6 +25,18 @@
 3. Add to cart button, favorite button
 4. Sale price display, sold out states
 5. Color variant thumbnail buttons
+6. 100% a11y score
+7. Tweaks, refactors, fixes
+
+### Week 2: Search Bar
+
+![Search Bar design](https://raw.githubusercontent.com/geoffdavis92/weekly-ui-assets/master/search-bar/design.png)
+
+1. (Sunday 4/15) Design component
+2. Input field
+3. Submit button
+4. [autocomplete] Downshift integration
+5. Past search term indicators
 6. 100% a11y score
 7. Tweaks, refactors, fixes
 
