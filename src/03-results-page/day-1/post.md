@@ -30,7 +30,7 @@ Also, please add your repos and/or images of your designs in the comments for in
 
 Happy designing! 🎉
 
-### Week 2 Calendar
+### Week 3 Calendar
 
 1. (Sunday 4/22) Design component 🎯
 2. Result entry, sponsored/best seller indicators
