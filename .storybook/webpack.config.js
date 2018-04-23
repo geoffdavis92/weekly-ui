@@ -12,7 +12,8 @@ module.exports = {
   resolve: {
     alias: {
       EcommerceListing: path.resolve(__dirname,'../src/01-ecommerce-listing/'),
-      SearchBar: path.resolve(__dirname, '../src/02-search-bar/')
+      SearchBar: path.resolve(__dirname, '../src/02-search-bar/'),
+      ResultsPage: path.resolve(__dirname,'../src/03-results-page')
     }
   },
   plugins: [

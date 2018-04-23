@@ -7,6 +7,7 @@ import { linkTo } from "@storybook/addon-links";
 import { Button, Welcome } from "@storybook/react/demo";
 import EcommerceListing from "EcommerceListing";
 import SearchBar from "SearchBar";
+import ResultsPage from "ResultsPage";
 
 storiesOf("Week 1: Ecommerce Listing", module)
   .add("Day 2", () => <EcommerceListing.Day2 />)
@@ -66,3 +67,13 @@ storiesOf("Week 2: Search Bar", module)
       }}
     />
   ));
+
+storiesOf("Week 3: Results Page", module).add("Day 2", () => (
+  <React.Fragment>
+    <style>
+      @import
+      url('https://fonts.googleapis.com/css?family=Merriweather:400,700|Open+Sans:400,700');
+    </style>
+    <ResultsPage.Day2 />
+  </React.Fragment>
+));

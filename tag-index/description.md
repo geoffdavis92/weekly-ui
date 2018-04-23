@@ -1,0 +1,1 @@
+Design one UI component per week, and implement one feature per day.
