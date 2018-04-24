@@ -74,6 +74,6 @@ storiesOf("Week 3: Results Page", module).add("Day 2", () => (
       @import
       url('https://fonts.googleapis.com/css?family=Merriweather:400,700|Open+Sans:400,700');
     </style>
-    <ResultsPage.Day2 />
+    <ResultsPage.Day2 query="MLS Week 8" />
   </React.Fragment>
 ));
