@@ -1,7 +1,7 @@
 ---
-cover_image: https://thepracticaldev.s3.amazonaws.com/i/f1aw40p6ebsbvz8sjrto.jpg
+cover_image: https://thepracticaldev.s3.amazonaws.com/i/yc5kcdxza0knj63nuda8.png
 title: "Weekly UI Challenge Week 3 Day 2: Add result entry, sponsored/best seller indicators"
-published: false
+published: true
 description: "Week 3 Day 2 of my Weekly UI challenge: Time for a search party"
 tags: ui,weeklyui,challenge,react
 ---
@@ -10,13 +10,19 @@ Welcome to Week 3, Day 2 of my Weekly UI challenge! Week 3 will focus on a **res
 
 ## Add result entry, sponsored/best seller indicators
 
-<!-- CONTENT -->
+Back to basics again! The first thing any results page needs is an entry/entries to populate the page, because without them this would just be a bunch of whitespace. Like the rest of the UI projects we have worked on, these results should be easily traversable, have good color contrast, and have relevant content displaying, in order to be of most use to the searcher.
+
+Additionally, the original search query is display atop the page, so users are able to see what they searched; this could easily be replaced by a secondary search bar, similar to how Google's main search functions.
+
+Also like Google's search, our results should have some sort of indicator if there is paid content and/or a well-regarded result displaying. In my case, I am basing my design off of a would-be sports blog, so I have a special background color indicating the link goes to content that is sponsored by someone to appear first.
 
 Following the original design I created, this is what I've got for **Day 2**:
 
-![A search bar component, with input text element](https://raw.githubusercontent.com/geoffdavis92/weekly-ui-assets/master/search-bar/day2/w2d2-final-sized.png)
+![A results page component, with one result entry highlighted to indicate it is sponsored](https://thepracticaldev.s3.amazonaws.com/i/ha402qn8gf6tyl5z8soq.png)
 
-<!-- CONTENT -->
+My implementation is fairly simple, and uses a list view (for now); if you wanted to, and for *EXTRA* points, you could use the ecommerce listing you made from Week 1, if that fits your design. 
+
+I chose a faded green color to act as the sponsored content indicator, alongside a complementing, darker shade for the label. Lastly, a simple custom focus state gives a bit of character to the otherwise straightforward page.
 
 ## Now it's your turn
 
@@ -37,7 +43,3 @@ Happy coding! 🎉
 5. Pagination/load more
 6. 100% a11y score
 7. Tweaks, refactors, fixes
-
-### Resources
-
-<!-- RESOURCES -->

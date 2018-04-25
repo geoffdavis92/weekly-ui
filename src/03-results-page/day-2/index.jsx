@@ -32,6 +32,7 @@ const EntriesContainer = styled.ul`
 const ResultEntry = styled.li`
   ${props => (props.sponsored ? `background-color: ${THEME.green}` : "")};
   border-radius: 2px;
+  display: inline-block;
   margin: 0 0 1em;
   max-width: 760px;
   &:hover {
