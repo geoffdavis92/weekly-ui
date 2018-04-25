@@ -68,12 +68,22 @@ storiesOf("Week 2: Search Bar", module)
     />
   ));
 
-storiesOf("Week 3: Results Page", module).add("Day 2", () => (
-  <React.Fragment>
-    <style>
-      @import
-      url('https://fonts.googleapis.com/css?family=Merriweather:400,700|Open+Sans:400,700');
-    </style>
-    <ResultsPage.Day2 query="MLS Week 8" />
-  </React.Fragment>
-));
+storiesOf("Week 3: Results Page", module)
+  .add("Day 2", () => (
+    <React.Fragment>
+      <style>
+        @import
+        url('https://fonts.googleapis.com/css?family=Merriweather:400,700|Open+Sans:400,700');
+      </style>
+      <ResultsPage.Day2 query="MLS Week 8" />
+    </React.Fragment>
+  ))
+  .add("Day 3", () => (
+    <React.Fragment>
+      <style>
+        @import
+        url('https://fonts.googleapis.com/css?family=Merriweather:400,700|Open+Sans:400,700');
+      </style>
+      <ResultsPage.Day3 query="MLS Week 8" />
+    </React.Fragment>
+  ));

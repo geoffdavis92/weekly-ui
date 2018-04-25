@@ -55,6 +55,7 @@
     "proptypes": "^1.1.0",
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
+    "react-floodgate": "^0.0.7",
     "styled-components": "^3.2.5",
     "ts-loader": "^4.1.0",
     "typescript": "^2.8.1",
