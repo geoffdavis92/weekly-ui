@@ -35,9 +35,18 @@ const EntriesContainer = styled.ul`
     props.gridToggled
       ? `@supports ( display: grid ) {
     display: grid;
-    grid-template-columns: repeat(4,calc(25% - .5em));
-    grid-column-gap: .5em;
+    grid-template-columns: repeat(1,calc(100%));
     grid-row-gap: 1em;
+
+    @media only screen and (min-width: 768px) {
+      grid-template-columns: repeat(2,calc(50% - .5em));
+    grid-column-gap: .5em;
+    }
+
+    @media only screen and (min-width: 950px) {
+          grid-template-columns: repeat(4,calc(25% - .5em));
+    grid-column-gap: .5em;
+    }
   }`
       : ""};
 `;
@@ -46,14 +55,20 @@ const ResultEntry = styled.li`
   ${props => (props.sponsored ? `background-color: ${THEME.green}` : "")};
   ${props =>
     props.entryStyle === "grid"
-      ? `background-image: url(${props.imageSource}); background-size: cover;`
+      ? `
+      background-image: url(${props.imageSource}); 
+      background-position: center bottom;
+      background-size: cover;
+      `
       : ""} border-radius: 2px;
   display: inline-block;
   ${props =>
     props.entryStyle === "list"
       ? `margin: 0 0 1em; max-width: 760px;`
-      : `height: calc(20vw - 1em); margin: 0 1em 1em 0; 
-      width: calc(25% - 1em);
+      : `height: calc(20vw - 1em); 
+      margin: 0 1em 1em 0; 
+      width: calc(25% - 1em); 
+      min-height: 33vh;
       
   @supports ( display: grid ) {
       margin: auto;

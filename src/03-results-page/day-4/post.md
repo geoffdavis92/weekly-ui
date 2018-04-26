@@ -1,32 +1,26 @@
 ---
-cover_image: 
-title: "Weekly UI Challenge Week 3 Day 3: Add grid/list view toggles"
+cover_image: https://thepracticaldev.s3.amazonaws.com/i/cyolczubwx9dg2plzcuj.png
+title: "Weekly UI Challenge Week 3 Day 4: Add sorting"
 published: false
-description: "Week 3 Day 3 of my Weekly UI challenge: "
+description: "Week 3 Day 4 of my Weekly UI challenge: Shuffling the deck "
 tags: ui,weeklyui,challenge,react
 ---
 
-Welcome to Week 3, Day 3 of my Weekly UI challenge! Week 3 will focus on a **results page** UI component; each day throughout this following week, I will pick one or two (usually related) subelements of the design to implement. For day three, our goal is to…
+Welcome to Week 3, Day 4 of my Weekly UI challenge! Week 3 will focus on a **results page** UI component; each day throughout this following week, I will pick one or two (usually related) subelements of the design to implement. For day four, our goal is to…
 
-## Add grid/list view toggles
+## Add sorting
 
-The ability to control the display of UI is not a very oft-included feature, but one that can enhance the experience and/or utility of an app/web site. Such a feature is included in such user interfaces as Instagram (user profile views) and Google Drive; they can certainly aid in the scannability of a design, by removing excess– yet perhaps at times useful– information.
+The sorting of search results are an important part of a useful results page. Whether it is for an ecommerce platform– sorting by price or customer review, or a search engine– sorting by date or relevance, or some other type of app/site, proper sorting methods help users get the best of your search implementation.
 
-While design is an all-important decision in implementing the vision of one's app or site, handing over some control of the display can show your users that you care for their needs. 
+Following the original design I created, this is what I've got for **Day 4**:
 
-Following the original design I created, this is what I've got for **Day 3**:
+![A results page component in list view, with one result entry highlighted to indicate it is sponsored](https://thepracticaldev.s3.amazonaws.com/i/j8cjtbklxomue6imuy5i.png)
 
-![A results page component in list view, with one result entry highlighted to indicate it is sponsored](https://thepracticaldev.s3.amazonaws.com/i/cmm27su78o4j8defusbt.png)
-
-![A results page component in grid view, with one result entry highlighted to indicate it is sponsored](https://thepracticaldev.s3.amazonaws.com/i/egr6t09jvbs2qo07ej2w.png)
-
-Like some of the features we've created on this challenge, this view toggle may work best when preferences are saved using cookies or some other mechanism to save user state. But, I've skipped this step so far. This feature is a simple toggle that utilizes React's internal component state and dynamic styling via [Styled Components](https://styled-components.com).
-
-One thing I would suggest is trying out the new(ish) [`grid` CSS API](https://developer.mozilla.org/en-US/docs/Web/CSS/grid) to style the grid view; it's not as scary as you may imagine, and it's incredibly powerful.
+The design is a little different due to the fact that I am using the native HTML `select` element, but the functionality is all there. The design continues to emulate the results of a mock soccer blog, so the sorting methods reflect that of a blog, i.e. sorting by date. If you were using a more robust search platform and flexible API, you could also sort by relevance (like Google and Amazon do, for example) or by price or customer rating, as previously mentioned.
 
 Here's an animation of the feature in action:
 
-![A results page component switching between list and grid views](https://thepracticaldev.s3.amazonaws.com/i/f1kxwc5o0mjktd0fsb73.gif)
+![A results page component switching between list and grid views, with certain sorting parameters in place](https://thepracticaldev.s3.amazonaws.com/i/aw87o75t8vbp4rnqdb71.gif)
 
 You can check out my coded implementation [on my Github pages site for this project](https://geoffdavis92.github.io/weekly-ui/).
 
@@ -44,8 +38,8 @@ Happy coding! 🎉
 
 1. (Sunday 4/22) Design component ✅
 2. Result entry, sponsored/best seller indicators ✅
-3. Grid/list view toggles 🎯
-4. Sorting
+3. Grid/list view toggles ✅
+4. Sorting 🎯
 5. Pagination/load more
 6. 100% a11y score
 7. Tweaks, refactors, fixes
