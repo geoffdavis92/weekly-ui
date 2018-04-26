@@ -86,4 +86,13 @@ storiesOf("Week 3: Results Page", module)
       </style>
       <ResultsPage.Day3 query="MLS Week 8" />
     </React.Fragment>
+  ))
+  .add("Day 4", () => (
+    <React.Fragment>
+      <style>
+        @import
+        url('https://fonts.googleapis.com/css?family=Merriweather:400,700|Open+Sans:400,700');
+      </style>
+      <ResultsPage.Day4 query="MLS Week 8" />
+    </React.Fragment>
   ));

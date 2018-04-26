@@ -8,7 +8,9 @@ const Page = styled.main`
   color: ${THEME.black};
   font-family: "Open Sans", "Arial", sans-serif;
   font-size: 20px;
+  margin: auto;
   padding: 1em;
+  max-width: 1200px;
 `;
 
 const Header = styled.header`
@@ -29,6 +31,15 @@ const EntriesContainer = styled.ul`
   list-style-type: none;
   margin: 0;
   padding: 0;
+  ${props =>
+    props.gridToggled
+      ? `@supports ( display: grid ) {
+    display: grid;
+    grid-template-columns: repeat(4,calc(25% - .5em));
+    grid-column-gap: .5em;
+    grid-row-gap: 1em;
+  }`
+      : ""};
 `;
 
 const ResultEntry = styled.li`
@@ -41,7 +52,13 @@ const ResultEntry = styled.li`
   ${props =>
     props.entryStyle === "list"
       ? `margin: 0 0 1em; max-width: 760px;`
-      : `height: calc(20vw - 1em); margin: 0 1em 1em 0; width: calc(20vw - 1em)`};
+      : `height: calc(20vw - 1em); margin: 0 1em 1em 0; 
+      width: calc(25% - 1em);
+      
+  @supports ( display: grid ) {
+      margin: auto;
+      width: 100%;
+  }`};
   ${props =>
     props.entryStyle !== "grid"
       ? `&:hover {
@@ -175,7 +192,7 @@ const ToggleButton = styled.button`
   }
 `;
 
-const ViewToggle = props => {
+const ControlsWrapper = props => {
   return (
     <ToggleWrapper>
       <ToggleButton
@@ -191,32 +208,52 @@ const ViewToggle = props => {
       >
         <FA icon={faTh} /> Grid
       </ToggleButton>
+      <SortSelect onInput={props.selectSort}>
+        <option value={null} disabled selected>
+          Sort
+        </option>
+        <option value="newest">Newest to oldest</option>
+        <option value="oldest">Oldest to newest</option>
+      </SortSelect>
     </ToggleWrapper>
   );
 };
 
+const SortSelect = styled.select`
+  background: #fff;
+  border: 1px solid ${THEME.black};
+  color: ${THEME.black};
+  font-size: 16px;
+  margin: 0 0 0 1em;
+  padding: 0.5em;
+  &:focus {
+    outline: 1px dotted ${THEME.grayDark};
+  }
+  &:active {
+    outline: 1px dotted ${THEME.black};
+  }
+`;
+
 export default class ResultsPage extends React.Component {
-  state = { listToggled: true, gridToggled: false };
+  state = { listToggled: true, gridToggled: false, sortMethod: "newest" };
   _handleToggleView = ({ view }) => {
     this.setState(prevState => ({
       listToggled: view === "left" ? true : false,
       gridToggled: view === "right" ? true : false
     }));
   };
+  _handleSortSelect = e => {
+    const sortMethod = e.target.value;
+    this.setState(prevState => ({
+      sortMethod
+    }));
+  };
   render() {
-    return (
-      <Page>
-        <Header>
-          <QueryHeading>
-            Search results for: <strong>{this.props.query}</strong>
-          </QueryHeading>
-        </Header>
-        <ViewToggle
-          listToggled={this.state.listToggled}
-          gridToggled={this.state.gridToggled}
-          toggleView={this._handleToggleView}
-        />
-        <EntriesContainer>
+    const Entries = [
+      {
+        date: new Date("4/22/2018"),
+        sponsored: true,
+        component: (
           <ResultEntry
             entryStyle={this.state.listToggled ? "list" : "grid"}
             sponsored
@@ -242,6 +279,12 @@ export default class ResultsPage extends React.Component {
               {this.state.listToggled && <EntryDate>4/22/2018</EntryDate>}
             </EntryWrapper>
           </ResultEntry>
+        )
+      },
+      {
+        date: new Date("4/23/2018"),
+        sponsored: false,
+        component: (
           <ResultEntry
             entryStyle={this.state.listToggled ? "list" : "grid"}
             imageSource="https://raw.githubusercontent.com/geoffdavis92/weekly-ui-assets/master/results-page/day1/soccer-2.jpg"
@@ -259,9 +302,15 @@ export default class ResultsPage extends React.Component {
                   </EntryPreview>
                 )}
               </EntryContent>
-              {this.state.listToggled && <EntryDate>4/22/2018</EntryDate>}
+              {this.state.listToggled && <EntryDate>4/23/2018</EntryDate>}
             </EntryWrapper>
           </ResultEntry>
+        )
+      },
+      {
+        date: new Date("4/24/2018"),
+        sponsored: false,
+        component: (
           <ResultEntry
             entryStyle={this.state.listToggled ? "list" : "grid"}
             imageSource="https://raw.githubusercontent.com/geoffdavis92/weekly-ui-assets/master/results-page/day1/soccer-3.jpg"
@@ -282,9 +331,15 @@ export default class ResultsPage extends React.Component {
                   </EntryPreview>
                 )}
               </EntryContent>
-              {this.state.listToggled && <EntryDate>4/22/2018</EntryDate>}
+              {this.state.listToggled && <EntryDate>4/24/2018</EntryDate>}
             </EntryWrapper>
           </ResultEntry>
+        )
+      },
+      {
+        date: new Date("4/25/2018"),
+        sponsored: false,
+        component: (
           <ResultEntry
             entryStyle={this.state.listToggled ? "list" : "grid"}
             imageSource="https://raw.githubusercontent.com/geoffdavis92/weekly-ui-assets/master/results-page/day1/soccer-4.jpg"
@@ -302,9 +357,49 @@ export default class ResultsPage extends React.Component {
                   </EntryPreview>
                 )}
               </EntryContent>
-              {this.state.listToggled && <EntryDate>4/22/2018</EntryDate>}
+              {this.state.listToggled && <EntryDate>4/25/2018</EntryDate>}
             </EntryWrapper>
           </ResultEntry>
+        )
+      }
+    ];
+
+    return (
+      <Page>
+        <Header>
+          <QueryHeading>
+            Search results for: <strong>{this.props.query}</strong>
+          </QueryHeading>
+        </Header>
+        <ControlsWrapper
+          listToggled={this.state.listToggled}
+          gridToggled={this.state.gridToggled}
+          toggleView={this._handleToggleView}
+          selectSort={this._handleSortSelect}
+        />
+        <EntriesContainer gridToggled={this.state.gridToggled}>
+          {Entries.sort(
+            (
+              { date: aDate, sponsored: aSponsored },
+              { date: bDate, sponsored: bSponsored }
+            ) => {
+              if (aSponsored) {
+                return aSponsored < bSponsored;
+              }
+              switch (this.state.sortMethod) {
+                case "oldest": {
+                  return aDate > bDate;
+                  break;
+                }
+                case "newest":
+                default: {
+                  return aDate < bDate;
+                }
+              }
+            }
+          ).map(({ component }) => {
+            return component;
+          })}
         </EntriesContainer>
       </Page>
     );
