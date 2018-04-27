@@ -1,26 +1,34 @@
 ---
-cover_image: https://thepracticaldev.s3.amazonaws.com/i/cyolczubwx9dg2plzcuj.png
-title: "Weekly UI Challenge Week 3 Day 4: Add sorting"
+cover_image: https://thepracticaldev.s3.amazonaws.com/i/c08dxg74uyqfo7gzdfll.png
+title: "Weekly UI Challenge Week 3 Day 5: Add a pagination/load more feature"
 published: false
-description: "Week 3 Day 4 of my Weekly UI challenge: Shuffling the deck "
+description: "Week 3 Day 5 of my Weekly UI challenge: Loading…"
 tags: ui,weeklyui,challenge,react
 ---
 
-Welcome to Week 3, Day 4 of my Weekly UI challenge! Week 3 will focus on a **results page** UI component; each day throughout this following week, I will pick one or two (usually related) subelements of the design to implement. For day four, our goal is to…
+Welcome to Week 3, Day 5 of my Weekly UI challenge! Week 3 will focus on a **results page** UI component; each day throughout this following week, I will pick one or two (usually related) subelements of the design to implement. For day five, our goal is to…
 
-## Add sorting
+## Add a pagination/load more feature
 
-The sorting of search results are an important part of a useful results page. Whether it is for an ecommerce platform– sorting by price or customer review, or a search engine– sorting by date or relevance, or some other type of app/site, proper sorting methods help users get the best of your search implementation.
+Have you ever submitted a search query and found yourself with over a million results from Google or Amazon? And in that situation, how many times have you had to scroll for a few hours to get to the end? None? Of course, because most robust search engines like those offer pagination or lazy loadin of search results!
 
-Following the original design I created, this is what I've got for **Day 4**:
+Pagination (the dynamic creation of pages to display content) and lazy loading content like search results or article listings are more features that really aid in providing a robust user experience on your site/app. This not only prevents users from being overwhelmed with results, but improves overall performance and accessibility by not loading dozens/hundreds/maybe thousands of results in one render and decreases the data load on a device, respectively.
 
-![A results page component in list view, with one result entry highlighted to indicate it is sponsored](https://thepracticaldev.s3.amazonaws.com/i/j8cjtbklxomue6imuy5i.png)
+Following the original design I created, this is what I've got for **Day 5**:
 
-The design is a little different due to the fact that I am using the native HTML `select` element, but the functionality is all there. The design continues to emulate the results of a mock soccer blog, so the sorting methods reflect that of a blog, i.e. sorting by date. If you were using a more robust search platform and flexible API, you could also sort by relevance (like Google and Amazon do, for example) or by price or customer rating, as previously mentioned.
+![A results page component in list view, with one result entry highlighted to indicate it is sponsored](https://thepracticaldev.s3.amazonaws.com/i/nf6dvzp90w720cr0cl0g.png)
 
-Here's an animation of the feature in action:
+I chose to use a "load more" for today's feature implementation; luckily for me, I wrote a small React component to do just this called [Floodgate](https://github.com/geoffdavis92/react-floodgate).
 
-![A results page component switching between list and grid views, with certain sorting parameters in place](https://thepracticaldev.s3.amazonaws.com/i/aw87o75t8vbp4rnqdb71.gif)
+Floodgate is a component that utilizes [render props](https://reactjs.org/docs/render-props.html) and generators to incrementally render a subset of items passed to the component. Such items can be anything array-bound, and in this case the items are an array of objects that hold the `<ResultEntry/>` component and its dates, for sorting. Floodgate also passes in functions as arguments to load the next batch of items, load in all items, and to reset the component state. (I use the reset function after all items have rendered for easy demoing of the feature, as a normal results page may not utilize this necessarily)
+
+In order to give a good UX to the perusers of my search results, I also need to disable the load more button and perhaps display a label to inform them that all results have been displayed. Floodgate has you covered! A `loadComplete` boolean is passed in as a render function argument as well, which yields a value of `true` if all the items have been rendered. 
+
+If you're using React to build your search results UI, give Floodgate a look and see if it can help you!
+
+Here's an animation of my load more feature in action:
+
+![A results page component switching between list and grid views, with certain sorting parameters in place, and a load more button](https://thepracticaldev.s3.amazonaws.com/i/18jx0388xfzw7styclpi.gif)
 
 You can check out my coded implementation [on my Github pages site for this project](https://geoffdavis92.github.io/weekly-ui/).
 
@@ -39,7 +47,14 @@ Happy coding! 🎉
 1. (Sunday 4/22) Design component ✅
 2. Result entry, sponsored/best seller indicators ✅
 3. Grid/list view toggles ✅
-4. Sorting 🎯
-5. Pagination/load more
+4. Sorting ✅
+5. Pagination/load more 🎯
 6. 100% a11y score
 7. Tweaks, refactors, fixes
+
+### Resources
+
+* [`react-floodgate`](https://github.com/geoffdavis92/react-floodgate) - a React "load more" React component for incrementally displaying data
+* [Pagination – Examples And Good Practices](https://www.smashingmagazine.com/2007/11/pagination-gallery-examples-and-good-practices/)
+* [Infinite Scrolling Best Practices](https://uxplanet.org/infinite-scrolling-best-practices-c7f24c9af1d)
+* [Infinite Scrolling, Pagination Or “Load More” Buttons? Usability Findings In eCommerce](https://www.smashingmagazine.com/2016/03/pagination-infinite-scrolling-load-more-buttons/)
