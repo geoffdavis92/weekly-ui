@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import FA from "@fortawesome/react-fontawesome";
 import { faListUl, faTh } from "@fortawesome/fontawesome-free-solid";
+import Floodgate from "react-floodgate";
 import { THEME } from "../util";
 
 const Page = styled.main`
@@ -249,8 +250,33 @@ const SortSelect = styled.select`
   }
 `;
 
+const LoadMoreButton = styled.button`
+  background: ${props => props.disabled ? THEME.grayLight : "#fff"};
+  border: 1px solid ${props => props.disabled ? THEME.grayDark : THEME.black};
+  border-radius: 2px;
+  color: ${props => props.disabled ? THEME.grayDark : THEME.black};
+  display: block;
+  font-size: 20px;
+  margin: 0;
+  padding: 0.5em;
+  width: 100%;
+
+  &[disabled] {
+    cursor: not-allowed;
+  }
+
+  &:focus {
+    outline: 1px dotted ${THEME.grayDark};
+  }
+  &:active {
+    background: ${THEME.black};
+    color: #fff;
+    outline: 1px dotted ${THEME.black};
+  }
+`;
+
 export default class ResultsPage extends React.Component {
-  state = { listToggled: true, gridToggled: false, sortMethod: "newest" };
+  state = { listToggled: true, gridToggled: false, sortMethod: "oldest" };
   _handleToggleView = ({ view }) => {
     this.setState(prevState => ({
       listToggled: view === "left" ? true : false,
@@ -268,9 +294,9 @@ export default class ResultsPage extends React.Component {
       {
         date: new Date("4/22/2018"),
         sponsored: true,
-        component: (
+        Component: props => (
           <ResultEntry
-            entryStyle={this.state.listToggled ? "list" : "grid"}
+            entryStyle={props.listToggled ? "list" : "grid"}
             sponsored
             imageSource="https://raw.githubusercontent.com/geoffdavis92/weekly-ui-assets/master/results-page/day1/soccer-1.jpg"
           >
@@ -299,9 +325,9 @@ export default class ResultsPage extends React.Component {
       {
         date: new Date("4/23/2018"),
         sponsored: false,
-        component: (
+        Component: props => (
           <ResultEntry
-            entryStyle={this.state.listToggled ? "list" : "grid"}
+            entryStyle={props.listToggled ? "list" : "grid"}
             imageSource="https://raw.githubusercontent.com/geoffdavis92/weekly-ui-assets/master/results-page/day1/soccer-2.jpg"
           >
             <EntryWrapper>
@@ -325,9 +351,9 @@ export default class ResultsPage extends React.Component {
       {
         date: new Date("4/24/2018"),
         sponsored: false,
-        component: (
+        Component: props => (
           <ResultEntry
-            entryStyle={this.state.listToggled ? "list" : "grid"}
+            entryStyle={props.listToggled ? "list" : "grid"}
             imageSource="https://raw.githubusercontent.com/geoffdavis92/weekly-ui-assets/master/results-page/day1/soccer-3.jpg"
           >
             <EntryWrapper>
@@ -354,9 +380,9 @@ export default class ResultsPage extends React.Component {
       {
         date: new Date("4/25/2018"),
         sponsored: false,
-        component: (
+        Component: props => (
           <ResultEntry
-            entryStyle={this.state.listToggled ? "list" : "grid"}
+            entryStyle={props.listToggled ? "list" : "grid"}
             imageSource="https://raw.githubusercontent.com/geoffdavis92/weekly-ui-assets/master/results-page/day1/soccer-4.jpg"
           >
             <EntryWrapper>
@@ -376,6 +402,57 @@ export default class ResultsPage extends React.Component {
             </EntryWrapper>
           </ResultEntry>
         )
+      },
+      {
+        date: new Date("4/26/2018"),
+        sponsored: false,
+        Component: props => (
+          <ResultEntry
+            entryStyle={props.listToggled ? "list" : "grid"}
+            imageSource="https://raw.githubusercontent.com/geoffdavis92/weekly-ui-assets/master/results-page/day1/soccer-5.jpg"
+          >
+            <EntryWrapper>
+              {this.state.listToggled && (
+                <EntryImage imageSource="https://raw.githubusercontent.com/geoffdavis92/weekly-ui-assets/master/results-page/day1/soccer-5.jpg" />
+              )}
+              <EntryContent>
+                <EntryHeading>MLS Week 9 Preview</EntryHeading>
+                {this.state.listToggled && (
+                  <EntryPreview>
+                    Ad consequat et tempor do sit ut sunt sit tempor do.
+                  </EntryPreview>
+                )}
+              </EntryContent>
+              {this.state.listToggled && <EntryDate>4/26/2018</EntryDate>}
+            </EntryWrapper>
+          </ResultEntry>
+        )
+      },
+      {
+        date: new Date("4/27/2018"),
+        sponsored: false,
+        Component: props => (
+          <ResultEntry
+            entryStyle={props.listToggled ? "list" : "grid"}
+            imageSource="https://raw.githubusercontent.com/geoffdavis92/weekly-ui-assets/master/results-page/day1/soccer-6.jpg"
+          >
+            <EntryWrapper>
+              {this.state.listToggled && (
+                <EntryImage imageSource="https://raw.githubusercontent.com/geoffdavis92/weekly-ui-assets/master/results-page/day1/soccer-6.jpg" />
+              )}
+              <EntryContent>
+                <EntryHeading>The future of CONCACAF</EntryHeading>
+                {this.state.listToggled && (
+                  <EntryPreview>
+                    Excepteur adipisicing dolore dolor officia proident elit do
+                    aliquip sunt culpa tempor…
+                  </EntryPreview>
+                )}
+              </EntryContent>
+              {this.state.listToggled && <EntryDate>4/27/2018</EntryDate>}
+            </EntryWrapper>
+          </ResultEntry>
+        )
       }
     ];
 
@@ -392,30 +469,49 @@ export default class ResultsPage extends React.Component {
           toggleView={this._handleToggleView}
           selectSort={this._handleSortSelect}
         />
-        <EntriesContainer gridToggled={this.state.gridToggled}>
-          {Entries.sort(
-            (
-              { date: aDate, sponsored: aSponsored },
-              { date: bDate, sponsored: bSponsored }
-            ) => {
-              if (aSponsored) {
-                return aSponsored < bSponsored;
-              }
-              switch (this.state.sortMethod) {
-                case "oldest": {
-                  return aDate > bDate;
-                  break;
-                }
-                case "newest":
-                default: {
-                  return aDate < bDate;
-                }
-              }
-            }
-          ).map(({ component }) => {
-            return component;
-          })}
-        </EntriesContainer>
+        <Floodgate data={Entries} initial={2} increment={2}>
+          {({ items, loadComplete, loadNext, reset }) => {
+            return (
+              <React.Fragment>
+                <EntriesContainer gridToggled={this.state.gridToggled}>
+                  {items
+                    .sort(
+                      (
+                        { date: aDate, sponsored: aSponsored },
+                        { date: bDate, sponsored: bSponsored }
+                      ) => {
+                        if (aSponsored) {
+                          return aSponsored < bSponsored;
+                        }
+                        switch (this.state.sortMethod) {
+                          case "oldest": {
+                            return aDate > bDate;
+                            break;
+                          }
+                          case "newest":
+                          default: {
+                            return aDate < bDate;
+                          }
+                        }
+                      }
+                    )
+                    .map(({ Component }) => {
+                      return <Component listToggled={this.state.listToggled} />;
+                    })}
+                </EntriesContainer>
+                <br />
+                <LoadMoreButton
+                  onClick={!loadComplete ? loadNext : null}
+                  disabled={loadComplete}
+                >
+                  {!loadComplete ? "Load More" : "All articles loaded"}
+                </LoadMoreButton>
+                <br/>
+                {loadComplete && <LoadMoreButton onClick={reset}>Reset</LoadMoreButton>}
+              </React.Fragment>
+            );
+          }}
+        </Floodgate>
       </Page>
     );
   }

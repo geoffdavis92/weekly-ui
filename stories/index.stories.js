@@ -95,7 +95,8 @@ storiesOf("Week 3: Results Page", module)
       </style>
       <ResultsPage.Day4 query="MLS Week 8" />
     </React.Fragment>
-  )).add("Day 5", () => (
+  ))
+  .add("Day 5", () => (
     <React.Fragment>
       <style>
         @import
